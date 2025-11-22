@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>tn.enicarthage</groupId>
+  <artifactId>ClientSOAP2026</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <dependencies>
+        <!-- JAX-WS API -->
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        
+        <!-- JAXB API -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        
+        <!-- Implémentation JAX-WS (GlassFish) -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        
+        <!-- Implémentation JAXB -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+    </dependencies>
+  <build>
+	    <plugins>
+	        <plugin>
+	            <groupId>com.sun.xml.ws</groupId>
+	            <artifactId>jaxws-maven-plugin</artifactId>
+	            <version>4.0.3</version>
+	            <executions>
+	                <execution>
+	                    <goals>
+	                        <goal>wsimport</goal>
+	                    </goals>
+	                    <configuration>
+	                        <wsdlUrls>
+	                            <wsdlUrl>http://localhost:8585/BanqueService?wsdl</wsdlUrl>
+	                        </wsdlUrls>
+	                        <packageName>tn.enicarthage.proxy</packageName>
+	                        <keep>true</keep>
+	                    </configuration>
+	                </execution>
+	            </executions>
+	        </plugin>
+	    </plugins>
+	</build>
+</project>
